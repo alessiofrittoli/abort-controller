@@ -15,9 +15,7 @@
 		}
 	],
 	"keywords": [
-		"nodejs",
-		"npm",
-		"node_modules"
+		"abort-controller"
 	],
 	"homepage": "https://github.com/alessiofrittoli/abort-controller#readme",
 	"bugs": {
