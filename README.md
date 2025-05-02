@@ -1,29 +1,31 @@
-# Node Module Starter 🛠️
+# AbortController 🛑
 
 [![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![Socket Status][socket-badge]][socket-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
 
-[![GitHub Sponsor][sponsor-badge]][sponsor-url] [![GitHub Sponsor][sponsor-count-badge]][sponsor-count-url]
+[![GitHub Sponsor][sponsor-badge]][sponsor-url]
 
-[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Fnode-module-starter
-[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Fnode-module-starter
-[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/node-module-starter/badge.svg
-[coverage-url]: https://coveralls.io/github/alessiofrittoli/node-module-starter
-[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/node-module-starter
-[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/node-module-starter/overview
-[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Fnode-module-starter.svg
-[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Fnode-module-starter
-[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Fnode-module-starter
+[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Fabort-controller
+[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Fabort-controller
+[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/abort-controller/badge.svg
+[coverage-url]: https://coveralls.io/github/alessiofrittoli/abort-controller
+[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/abort-controller
+[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/abort-controller/overview
+[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Fabort-controller.svg
+[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Fabort-controller
+[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Fabort-controller
 
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
-[sponsor-count-badge]: https://img.shields.io/github/sponsors/alessiofrittoli?label=Sponsor&logo=GitHub
-[sponsor-count-url]: https://github.com/sponsors/alessiofrittoli
 
-## Starter repository for developing node_modules
+## Typed AbortController
 
 ### Table of Contents
 
 - [Getting started](#getting-started)
+- [API Reference](#api-reference)
+  - [Type Parameters](#type-parameters)
+  - [Methods](#methods)
+  - [Examples](#examples)
 - [Development](#development)
   - [Install depenendencies](#install-depenendencies)
   - [Build the source code](#build-the-source-code)
@@ -35,36 +37,112 @@
 
 ---
 
-### Getting started (delete once cloned in your project)
+### Getting started
 
-Run the following command to start using `node-module-starter` for your projects:
-
-```bash
-git clone git@github.com:alessiofrittoli/node-module-starter.git && git remote remove origin
-```
-
-install dependencies
+Run the following command to start using `abort-controller` in your projects:
 
 ```bash
-pnpm i
-```
-
-Read the [Creating a repository from a template - GitHub Docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for more in-detail informations about creating a new Repository from a template using GitHub web interface.
-
----
-
-### Getting started (customize based on your project needs)
-
-Run the following command to start using `{package_name}` in your projects:
-
-```bash
-npm i {package_name}
+npm i @alessiofrittoli/abort-controller
 ```
 
 or using `pnpm`
 
 ```bash
-pnpm i {package_name}
+pnpm i @alessiofrittoli/abort-controller
+```
+
+---
+
+### API Reference
+
+The `AbortController` Class extends the [Native Web API AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) Class, but provides a typed `.abort()` method and `.signal.reason` using the [`AbortError`](https://npmjs.com/package/@alessiofrittoli/exception#aborterror-class) provided by [`@alessiofrittoli/exception`](https://npmjs.com/package/@alessiofrittoli/exception) package.
+
+#### Type Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `TCode`   | `ErrorCode` | A custom type assigned to the `AbortError.code`. Default: [`ErrorCode`](https://www.npmjs.com/package/@alessiofrittoli/exception#errorcode-enum). |
+
+---
+
+#### Methods
+
+##### `AbortController.abort()`
+
+Invoking this method will set this object's AbortSignal's aborted flag and signal to any observers that the associated activity is to be aborted.
+
+<details>
+
+<summary style="cursor:pointer">Parameters</summary>
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `reason`  | `string` | 'The operation was aborted.' | The abort reason. This will be set to `AbortError.message`. |
+| `option`  | `AbortErrorOptions<TCode>` | - | Custom `AbortError` options. |
+
+</details>
+
+---
+
+#### Examples
+
+##### Listening to abort events
+
+```ts
+import { AbortController } from '@alessiofrittoli/abort-controller'
+
+const controller  = new AbortController()
+const { signal }  = controller
+
+signal.addEventListener( 'abort', event => {
+  console.log( 'Aborted at', event.timeStamp )
+  console.log( signal.reason ) // `AbortSignal.reason` is now type of `AbortError`
+} )
+
+button.addEventListener( 'click', () => {
+  controller.abort( 'User aborted the request.' )
+} )
+```
+
+---
+
+##### Using custom AbortError codes
+
+```ts
+import { AbortController } from '@alessiofrittoli/abort-controller'
+
+enum CustomAbortErrorCode
+{
+  REASON_1 = 'ERR:ABORTREASON1',
+  REASON_2 = 'ERR:ABORTREASON2',
+}
+
+const controller  = new AbortController()
+const { signal }  = controller
+
+signal.addEventListener( 'abort', () => {
+  switch ( signal.reason.code ) {
+    case CustomAbortErrorCode.REASON_1:
+      console.log( 'User aborted the request due to button 1 click.' )
+      break
+    
+    case CustomAbortErrorCode.REASON_2:
+      console.log( 'User aborted the request due to button 2 click.' )
+      break
+  
+    default:
+      console.log( 'User aborted the request due to unknown reason.' )
+      break
+  }
+} )
+  
+button.addEventListener( 'click', () => {
+  controller.abort( 'User clicked button 1.', { code: CustomAbortErrorCode.REASON_1 } )
+} )
+
+button2.addEventListener( 'click', () => {
+  controller.abort( 'User clicked button 2.', { code: CustomAbortErrorCode.REASON_2 } )
+} )
 ```
 
 ---
