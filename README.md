@@ -13,7 +13,6 @@
 [downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Fabort-controller.svg
 [deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Fabort-controller
 [deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Fabort-controller
-
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
 
@@ -27,7 +26,7 @@
   - [Methods](#methods)
   - [Examples](#examples)
 - [Development](#development)
-  - [Install depenendencies](#install-depenendencies)
+  - [Install dependencies](#install-dependencies)
   - [Build the source code](#build-the-source-code)
   - [ESLint](#eslint)
   - [Jest](#jest)
@@ -59,8 +58,8 @@ The `AbortController` Class extends the [Native Web API AbortController](https:/
 
 #### Type Parameters
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
+| Parameter | Default     | Description                                                                                                                                       |
+| --------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `TCode`   | `ErrorCode` | A custom type assigned to the `AbortError.code`. Default: [`ErrorCode`](https://www.npmjs.com/package/@alessiofrittoli/exception#errorcode-enum). |
 
 ---
@@ -75,10 +74,10 @@ Invoking this method will set this object's AbortSignal's aborted flag and signa
 
 <summary style="cursor:pointer">Parameters</summary>
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `reason`  | `string` | 'The operation was aborted.' | The abort reason. This will be set to `AbortError.message`. |
-| `option`  | `AbortErrorOptions<TCode>` | - | Custom `AbortError` options. |
+| Parameter | Type                       | Default                      | Description                                                 |
+| --------- | -------------------------- | ---------------------------- | ----------------------------------------------------------- |
+| `reason`  | `string`                   | 'The operation was aborted.' | The abort reason. This will be set to `AbortError.message`. |
+| `option`  | `AbortErrorOptions<TCode>` | -                            | Custom `AbortError` options.                                |
 
 </details>
 
@@ -89,19 +88,19 @@ Invoking this method will set this object's AbortSignal's aborted flag and signa
 ##### Listening to abort events
 
 ```ts
-import { AbortController } from '@alessiofrittoli/abort-controller'
+import { AbortController } from "@alessiofrittoli/abort-controller";
 
-const controller  = new AbortController()
-const { signal }  = controller
+const controller = new AbortController();
+const { signal } = controller;
 
-signal.addEventListener( 'abort', event => {
-  console.log( 'Aborted at', event.timeStamp )
-  console.log( signal.reason ) // `AbortSignal.reason` is now type of `AbortError`
-} )
+signal.addEventListener("abort", (event) => {
+  console.log("Aborted at", event.timeStamp);
+  console.log(signal.reason); // `AbortSignal.reason` is now type of `AbortError`
+});
 
-button.addEventListener( 'click', () => {
-  controller.abort( 'User aborted the request.' )
-} )
+button.addEventListener("click", () => {
+  controller.abort("User aborted the request.");
+});
 ```
 
 ---
@@ -109,47 +108,50 @@ button.addEventListener( 'click', () => {
 ##### Using custom AbortError codes
 
 ```ts
-import { AbortController } from '@alessiofrittoli/abort-controller'
+import { AbortController } from "@alessiofrittoli/abort-controller";
 
-enum CustomAbortErrorCode
-{
-  REASON_1 = 'ERR:ABORTREASON1',
-  REASON_2 = 'ERR:ABORTREASON2',
+enum CustomAbortErrorCode {
+  REASON_1 = "ERR:ABORTREASON1",
+  REASON_2 = "ERR:ABORTREASON2",
 }
 
-const controller  = new AbortController()
-const { signal }  = controller
+const controller = new AbortController();
+const { signal } = controller;
 
-signal.addEventListener( 'abort', () => {
-  switch ( signal.reason.code ) {
+signal.addEventListener("abort", () => {
+  switch (signal.reason.code) {
     case CustomAbortErrorCode.REASON_1:
-      console.log( 'User aborted the request due to button 1 click.' )
-      break
-    
-    case CustomAbortErrorCode.REASON_2:
-      console.log( 'User aborted the request due to button 2 click.' )
-      break
-  
-    default:
-      console.log( 'User aborted the request due to unknown reason.' )
-      break
-  }
-} )
-  
-button.addEventListener( 'click', () => {
-  controller.abort( 'User clicked button 1.', { code: CustomAbortErrorCode.REASON_1 } )
-} )
+      console.log("User aborted the request due to button 1 click.");
+      break;
 
-button2.addEventListener( 'click', () => {
-  controller.abort( 'User clicked button 2.', { code: CustomAbortErrorCode.REASON_2 } )
-} )
+    case CustomAbortErrorCode.REASON_2:
+      console.log("User aborted the request due to button 2 click.");
+      break;
+
+    default:
+      console.log("User aborted the request due to unknown reason.");
+      break;
+  }
+});
+
+button.addEventListener("click", () => {
+  controller.abort("User clicked button 1.", {
+    code: CustomAbortErrorCode.REASON_1,
+  });
+});
+
+button2.addEventListener("click", () => {
+  controller.abort("User clicked button 2.", {
+    code: CustomAbortErrorCode.REASON_2,
+  });
+});
 ```
 
 ---
 
 ### Development
 
-#### Install depenendencies
+#### Install dependencies
 
 ```bash
 npm install
@@ -171,7 +173,7 @@ pnpm build
 
 #### [ESLint](https://www.npmjs.com/package/eslint)
 
-warnings / errors check.
+Run warnings and errors checks.
 
 ```bash
 pnpm lint
