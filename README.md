@@ -1,37 +1,61 @@
-# AbortController 🛑
+<h1 align="center">AbortController 🛑</h1>
+<h2 align="center">
+  Typed AbortController
+</h2>
+<p align="center">
+  <a href="https://npmjs.org/package/@alessiofrittoli/abort-controller">
+    <img src="https://img.shields.io/npm/v/@alessiofrittoli/abort-controller" alt="Latest version"/>
+  </a>
+  <a href="https://coveralls.io/github/alessiofrittoli/abort-controller">
+    <img src="https://coveralls.io/repos/github/alessiofrittoli/abort-controller/badge.svg" alt="Test coverage"/>
+  </a>
+  <a href="https://socket.dev/npm/package/@alessiofrittoli/abort-controller/overview">
+    <img src="https://socket.dev/api/badge/npm/package/@alessiofrittoli/abort-controller" alt="Socket Security score"/>
+  </a>
+  <a href="https://npmjs.org/package/@alessiofrittoli/abort-controller">
+    <img src="https://img.shields.io/npm/dm/@alessiofrittoli/abort-controller.svg" alt="npm downloads"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/abort-controller">
+    <img src="https://badgen.net/bundlephobia/dependency-count/@alessiofrittoli/abort-controller" alt="Dependencies"/>
+  </a>
+  <a href="https://libraries.io/npm/%40alessiofrittoli%2Fabort-controller">
+    <img src="https://img.shields.io/librariesio/release/npm/@alessiofrittoli/abort-controller" alt="Dependencies status"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/abort-controller">
+    <img src="https://badgen.net/bundlephobia/min/@alessiofrittoli/abort-controller" alt="minified"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/abort-controller">
+    <img src="https://badgen.net/bundlephobia/minzip/@alessiofrittoli/abort-controller" alt="minizipped"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/abort-controller">
+    <img src="https://badgen.net/bundlephobia/tree-shaking/@alessiofrittoli/abort-controller" alt="Tree shakable"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/sponsors/alessiofrittoli">
+    <img src="https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2" alt="Fund this package"/>
+  </a>
+</p>
 
-[![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![Socket Status][socket-badge]][socket-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
-
-[![GitHub Sponsor][sponsor-badge]][sponsor-url]
-
-[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Fabort-controller
-[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Fabort-controller
-[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/abort-controller/badge.svg
-[coverage-url]: https://coveralls.io/github/alessiofrittoli/abort-controller
-[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/abort-controller
-[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/abort-controller/overview
-[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Fabort-controller.svg
-[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Fabort-controller
-[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Fabort-controller
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
-
-## Typed AbortController
 
 ### Table of Contents
 
 - [Getting started](#getting-started)
+- [Development](#development)
+  - [Local development](#local-development)
+  - [Production build](#production-build)
+  - [Unit tests](#unit-tests)
+    - [Run tests with coverage](#run-tests-with-coverage)
+  - [Contributing](#contributing)
+  - [Security](#security)
 - [API Reference](#api-reference)
   - [Type Parameters](#type-parameters)
   - [Methods](#methods)
   - [Examples](#examples)
-- [Development](#development)
-  - [Install dependencies](#install-dependencies)
-  - [Build the source code](#build-the-source-code)
-  - [ESLint](#eslint)
-  - [Jest](#jest)
-- [Contributing](#contributing)
-- [Security](#security)
 - [Credits](#made-with-)
 
 ---
@@ -49,6 +73,84 @@ or using `pnpm`
 ```bash
 pnpm i @alessiofrittoli/abort-controller
 ```
+
+---
+
+### Development
+
+Run the following to start development
+
+```shell
+nvm use
+
+pnpm i
+```
+
+#### Local development
+
+Run the following
+
+```shell
+pnpm dev
+```
+
+This will generate unminified output code, sourcemaps and will enable source file watcher.
+
+---
+
+#### Production build
+
+Run the following to create a local production build
+
+```shell
+pnpm build
+```
+
+This will generate minified output code without sourcemaps.
+
+---
+
+#### Unit tests
+
+Run all the defined test suites by running the following:
+
+```shell
+# Run tests and watch file changes.
+pnpm test:watch
+
+# Run tests in a CI environment.
+pnpm test:ci
+```
+
+---
+
+##### Run tests with coverage
+
+An HTTP server is then started to serve coverage files from `./coverage` folder.
+
+⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
+
+```shell
+pnpm test:coverage:serve
+```
+
+---
+
+#### Contributing
+
+Contributions are truly welcome!
+
+Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
+
+Help keep this project up to date with [GitHub Sponsor][sponsor-url].
+
+[![GitHub Sponsor][sponsor-badge]][sponsor-url]
+
+---
+
+#### Security
+
+If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
 
 ---
 
@@ -88,19 +190,19 @@ Invoking this method will set this object's AbortSignal's aborted flag and signa
 ##### Listening to abort events
 
 ```ts
-import { AbortController } from "@alessiofrittoli/abort-controller";
+import { AbortController } from '@alessiofrittoli/abort-controller'
 
-const controller = new AbortController();
-const { signal } = controller;
+const controller = new AbortController()
+const { signal } = controller
 
-signal.addEventListener("abort", (event) => {
-  console.log("Aborted at", event.timeStamp);
-  console.log(signal.reason); // `AbortSignal.reason` is now type of `AbortError`
-});
+signal.addEventListener('abort', event => {
+  console.log('Aborted at', event.timeStamp)
+  console.log(signal.reason) // `AbortSignal.reason` is now type of `AbortError`
+})
 
-button.addEventListener("click", () => {
-  controller.abort("User aborted the request.");
-});
+button.addEventListener('click', () => {
+  controller.abort('User aborted the request.')
+})
 ```
 
 ---
@@ -108,118 +210,42 @@ button.addEventListener("click", () => {
 ##### Using custom AbortError codes
 
 ```ts
-import { AbortController } from "@alessiofrittoli/abort-controller";
+import { AbortController } from '@alessiofrittoli/abort-controller'
 
 enum CustomAbortErrorCode {
-  REASON_1 = "ERR:ABORTREASON1",
-  REASON_2 = "ERR:ABORTREASON2",
+  REASON_1 = 'ERR:ABORTREASON1',
+  REASON_2 = 'ERR:ABORTREASON2',
 }
 
-const controller = new AbortController();
-const { signal } = controller;
+const controller = new AbortController()
+const { signal } = controller
 
-signal.addEventListener("abort", () => {
+signal.addEventListener('abort', () => {
   switch (signal.reason.code) {
     case CustomAbortErrorCode.REASON_1:
-      console.log("User aborted the request due to button 1 click.");
-      break;
+      console.log('User aborted the request due to button 1 click.')
+      break
 
     case CustomAbortErrorCode.REASON_2:
-      console.log("User aborted the request due to button 2 click.");
-      break;
+      console.log('User aborted the request due to button 2 click.')
+      break
 
     default:
-      console.log("User aborted the request due to unknown reason.");
-      break;
+      console.log('User aborted the request due to unknown reason.')
+      break
   }
-});
+})
 
-button.addEventListener("click", () => {
-  controller.abort("User clicked button 1.", {
-    code: CustomAbortErrorCode.REASON_1,
-  });
-});
+button.addEventListener('click', () => {
+  controller.abort('User clicked button 1.', { code: CustomAbortErrorCode.REASON_1 })
+})
 
-button2.addEventListener("click", () => {
-  controller.abort("User clicked button 2.", {
-    code: CustomAbortErrorCode.REASON_2,
-  });
-});
+button2.addEventListener('click', () => {
+  controller.abort('User clicked button 2.', { code: CustomAbortErrorCode.REASON_2 })
+})
 ```
 
 ---
-
-### Development
-
-#### Install dependencies
-
-```bash
-npm install
-```
-
-or using `pnpm`
-
-```bash
-pnpm i
-```
-
-#### Build the source code
-
-Run the following command to test and build code for distribution.
-
-```bash
-pnpm build
-```
-
-#### [ESLint](https://www.npmjs.com/package/eslint)
-
-Run warnings and errors checks.
-
-```bash
-pnpm lint
-```
-
-#### [Jest](https://npmjs.com/package/jest)
-
-Run all the defined test suites by running the following:
-
-```bash
-# Run tests and watch file changes.
-pnpm test:watch
-
-# Run tests in a CI environment.
-pnpm test:ci
-```
-
-- See [`package.json`](./package.json) file scripts for more info.
-
-Run tests with coverage.
-
-An HTTP server is then started to serve coverage files from `./coverage` folder.
-
-⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
-
-```bash
-test:coverage:serve
-```
-
----
-
-### Contributing
-
-Contributions are truly welcome!
-
-Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
-
-Help keep this project up to date with [GitHub Sponsor][sponsor-url].
-
-[![GitHub Sponsor][sponsor-badge]][sponsor-url]
-
----
-
-### Security
-
-If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
 
 ### Made with ☕
 
