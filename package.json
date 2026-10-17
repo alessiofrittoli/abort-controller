@@ -1,6 +1,6 @@
 {
 	"name": "@alessiofrittoli/abort-controller",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Typed AbortController",
 	"type": "module",
 	"author": {
@@ -82,7 +82,7 @@
 		"test:serve-coverage": "http-server ./coverage --gzip true -p 0 -o /index.html --silent",
 		"test:coverage:serve": "concurrently --prefix none --kill-others \"pnpm test:coverage\" \"pnpm test:serve-coverage\""
 	},
-"peerDependencies": {
+	"peerDependencies": {
 		"@alessiofrittoli/exception": "^4.1.0"
 	},
 	"devDependencies": {
