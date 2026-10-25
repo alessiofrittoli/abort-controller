@@ -7,8 +7,6 @@ import { AbortController } from '@/index'
 describe('AbortController', () => {
 	it('creates an instance of AbortController', () => {
 		const controller = new AbortController()
-		console.log({ controller })
-
 		expect(controller).toBeInstanceOf(globalThis.AbortController)
 		expect(controller.signal).toBeInstanceOf(AbortSignal)
 	})
